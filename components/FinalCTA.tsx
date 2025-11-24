@@ -59,7 +59,7 @@ export default function FinalCTA() {
           <div className="hidden md:block">
             <div className="bg-white/10 backdrop-blur rounded-2xl p-6 shadow-2xl">
               <img
-                src="/Images/ebook-mockup.png"
+                src="/Public/Images/ebook-mockup.png"
                 alt="Aprenda a Decorar em Dois Passos"
                 className="w-full h-auto rounded-lg"
               />
