@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { savePaidOrderFromSession } from "@/lib/orders";
 import Stripe from "stripe";
 
@@ -16,6 +16,14 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  // Check if Stripe is configured
+  if (!process.env.STRIPE_SECRET_KEY) {
+    return NextResponse.json(
+      { error: "Stripe não configurado" },
+      { status: 503 }
+    );
+  }
+
   try {
     // Read raw body as text (required for signature validation)
     const body = await request.text();
@@ -29,6 +37,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify webhook signature
+    const stripe = getStripe();
     let event: Stripe.Event;
     try {
       event = stripe.webhooks.constructEvent(body, signature, webhookSecret);

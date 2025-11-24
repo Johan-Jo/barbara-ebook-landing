@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import Button from "@/components/Button";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import type Stripe from "stripe";
 
 interface PageProps {
@@ -12,7 +12,34 @@ async function AccessContent({ sessionId }: { sessionId: string }) {
   let session: Stripe.Checkout.Session | null = null;
   let error: string | null = null;
 
+  // Check if Stripe is configured
+  if (!process.env.STRIPE_SECRET_KEY) {
+    return (
+      <div className="max-w-md w-full text-center">
+        <div className="bg-white rounded-lg p-8 shadow-lg border border-border">
+          <div className="mb-6">
+            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-3xl">⚠</span>
+            </div>
+            <h1 className="text-2xl md:text-3xl font-bold mb-4 text-primary">
+              Stripe não configurado
+            </h1>
+            <p className="text-primary-light leading-relaxed mb-6">
+              O sistema de pagamento ainda não está configurado. Entre em contato com o suporte.
+            </p>
+            <Link href="/">
+              <Button variant="primary" className="w-full">
+                Voltar à página inicial
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   try {
+    const stripe = getStripe();
     session = await stripe.checkout.sessions.retrieve(sessionId);
   } catch (err) {
     console.error("Error retrieving session:", err);

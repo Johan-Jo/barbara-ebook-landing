@@ -1,8 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if Stripe is configured
+    if (!process.env.STRIPE_SECRET_KEY) {
+      return NextResponse.json(
+        { error: "Stripe não configurado" },
+        { status: 503 }
+      );
+    }
+
     const priceId = process.env.STRIPE_PRICE_ID_EBOOK;
     const successUrl = process.env.STRIPE_SUCCESS_URL;
     const cancelUrl = process.env.STRIPE_CANCEL_URL;
@@ -15,6 +23,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const stripe = getStripe();
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items: [
