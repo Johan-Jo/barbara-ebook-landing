@@ -13,11 +13,11 @@ export function ParaQuemCard({ icon: Icon, title, description }: ParaQuemCardPro
         <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#F5F1ED] to-[#E8DDD0] flex items-center justify-center flex-shrink-0">
           <Icon className="w-6 h-6 text-primary" />
         </div>
-        <h3 className="text-xl md:text-2xl font-semibold text-foreground">
+        <h3 className="text-lg md:text-xl font-semibold text-foreground">
           {title}
         </h3>
       </div>
-      <p className="text-muted-foreground leading-relaxed">{description}</p>
+      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{description}</p>
     </div>
   );
 }
