@@ -3,7 +3,6 @@
 import { Button } from "./ui/button";
 import { ArrowRight, Shield, Download, CheckCircle } from "lucide-react";
 import { useCheckout } from "@/hooks/useCheckout";
-import Image from "next/image";
 
 export default function FinalCTA() {
   const { handleCheckout, isLoading, error } = useCheckout();
@@ -59,11 +58,9 @@ export default function FinalCTA() {
 
           <div className="hidden md:block">
             <div className="bg-white/10 backdrop-blur rounded-2xl p-6 shadow-2xl">
-              <Image
+              <img
                 src="/Images/ebook-mockup.png"
                 alt="Aprenda a Decorar em Dois Passos"
-                width={280}
-                height={400}
                 className="w-full h-auto rounded-lg"
               />
             </div>

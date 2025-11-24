@@ -10,7 +10,6 @@ import {
   Shield,
 } from "lucide-react";
 import { useCheckout } from "@/hooks/useCheckout";
-import Image from "next/image";
 
 export default function Hero() {
   const { handleCheckout, isLoading, error } = useCheckout();
@@ -96,13 +95,10 @@ export default function Hero() {
           {/* Right Column - E-book Mockup */}
           <div className="relative">
             <div className="relative z-10 transform hover:scale-105 transition-transform duration-500">
-              <Image
+              <img
                 src="/Images/ebook-mockup.png"
                 alt="Aprenda a Decorar em Dois Passos - E-book por Bárbara Marques"
-                width={600}
-                height={800}
                 className="w-full h-auto rounded-2xl shadow-2xl"
-                priority
               />
             </div>
             {/* Decorative elements */}

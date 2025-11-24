@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Badge } from "./ui/badge";
 
 export default function SobreAutora() {
@@ -9,11 +8,9 @@ export default function SobreAutora() {
           <div className="grid md:grid-cols-[300px_1fr] gap-8 items-start">
             <div>
               <div className="bg-white rounded-2xl p-4 shadow-lg">
-                <Image
+                <img
                   src="/Images/perfilBarbara.png"
                   alt="Bárbara Marques - Decoradora de Festas"
-                  width={300}
-                  height={400}
                   className="w-full h-auto rounded-xl object-cover"
                 />
               </div>
