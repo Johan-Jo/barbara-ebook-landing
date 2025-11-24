@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprenda a Decorar em Dois Passos - Bárbara Marques</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Navigation Controls -->
+        <div class="nav-controls">
+            <button id="prevBtn" class="nav-btn" aria-label="Página anterior">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+            <div class="nav-info">
+                <span class="page-counter"><span id="currentPage">1</span> / <span id="totalPages">1</span></span>
+                <span class="page-title" id="pageTitle">Capa</span>
+            </div>
+            <button id="nextBtn" class="nav-btn" aria-label="Próxima página">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Pages Container -->
+        <div class="pages-container">
+            <!-- Page 0: Cover -->
+            <div class="page cover-page" data-page="0">
+                <div class="cover-background">
+                    <img src="Public/Images/WhatsApp Bild 2025-11-23 kl. 10.55.03_9c67a121.jpg" alt="Decoração elegante" class="cover-image">
+                    <div class="cover-overlay"></div>
+                </div>
+                <div class="cover-content">
+                    <div class="cover-top">
+                        <div class="cover-badge">
+                            <span>✨</span>
+                            <span>E-book Exclusivo</span>
+                        </div>
+                    </div>
+                    <div class="cover-main">
+                        <h1 class="cover-title">Aprenda a Decorar em Dois Passos</h1>
+                        <div class="cover-divider"></div>
+                        <p class="cover-subtitle">Os primeiros passos para criar festas bonitas, sofisticadas e sem estresse</p>
+                        <div class="cover-author">
+                            <p>por <span class="author-name">Bárbara Marques</span></p>
+                        </div>
+                    </div>
+                    <div class="cover-bottom">
+                        <div class="cover-decorative">
+                            <div class="decorative-line"></div>
+                            <div class="decorative-dot"></div>
+                            <div class="decorative-line"></div>
+                        </div>
+                        <p class="cover-tagline">Casamentos & Festas Infantis</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 1: Introduction -->
+            <div class="page introduction-page" data-page="1">
+                <div class="page-content">
+                    <div class="page-header">
+                        <div class="page-badge">
+                            <span>📖</span>
+                            <span>Introdução</span>
+                        </div>
+                        <h1 class="page-title">Bem-vinda à Sua Jornada</h1>
+                        <div class="title-divider"></div>
+                    </div>
+                    <div class="page-body" id="introductionContent">
+                        <!-- Content will be loaded from markdown -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Author -->
+            <div class="page author-page" data-page="2">
+                <div class="page-content">
+                    <div class="author-header">
+                        <p class="section-label">Sobre a Autora</p>
+                        <div class="title-divider"></div>
+                    </div>
+                    <div class="author-grid">
+                        <div class="author-photo">
+                            <img src="Public/Images/WhatsApp Bild 2025-11-23 kl. 10.56.11_4b405c08.jpg" alt="Bárbara Marques">
+                            <div class="photo-decorative"></div>
+                        </div>
+                        <div class="author-bio" id="authorContent">
+                            <!-- Content will be loaded from markdown -->
+                        </div>
+                    </div>
+                    <div class="author-quote">
+                        <div class="quote-icon">"</div>
+                        <p class="quote-text">"Decoradora especializada em casamentos e festas, ajudando mulheres a entrarem no mercado de decoração com segurança, método e profissionalismo."</p>
+                        <div class="quote-author">
+                            <div class="quote-line"></div>
+                            <p>Bárbara Marques</p>
+                        </div>
+                    </div>
+                    <div class="author-stats">
+                        <div class="stat">
+                            <p class="stat-number">300+</p>
+                            <p class="stat-label">Eventos Realizados</p>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat">
+                            <p class="stat-number">10+</p>
+                            <p class="stat-label">Anos de Experiência</p>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat">
+                            <p class="stat-number">500+</p>
+                            <p class="stat-label">Alunas Mentoradas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 3: Table of Contents -->
+            <div class="page toc-page" data-page="3">
+                <div class="page-content">
+                    <div class="page-header">
+                        <div class="page-badge">
+                            <span>📑</span>
+                            <span>Sumário</span>
+                        </div>
+                        <h1 class="page-title">Conteúdo do E-book</h1>
+                        <div class="title-divider"></div>
+                    </div>
+                    <div class="toc-content" id="tocContent">
+                        <!-- Content will be loaded from markdown -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- More pages will be added dynamically -->
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Aprenda a Decorar em Dois Passos • Bárbara Marques</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
