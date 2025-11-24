@@ -96,7 +96,7 @@ export default function Hero() {
           <div className="relative">
             <div className="relative z-10 transform hover:scale-105 transition-transform duration-500">
               <img
-                src="/Public/Images/ebook-mockup.png"
+                src="/Images/ebook-mockup.png"
                 alt="Aprenda a Decorar em Dois Passos - E-book por Bárbara Marques"
                 className="w-full h-auto rounded-2xl shadow-2xl"
               />

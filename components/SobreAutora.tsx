@@ -9,7 +9,7 @@ export default function SobreAutora() {
             <div>
               <div className="bg-white rounded-2xl p-4 shadow-lg">
                 <img
-                  src="/Public/Images/perfilBarbara.png"
+                  src="/Images/perfilBarbara.png"
                   alt="Bárbara Marques - Decoradora de Festas"
                   className="w-full h-auto rounded-xl object-cover"
                 />
