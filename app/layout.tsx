@@ -25,12 +25,21 @@ export const metadata: Metadata = {
     description:
       "Os primeiros passos para criar festas bonitas, sofisticadas e sem estresse",
     type: "website",
+    images: [
+      {
+        url: "/Images/ebook-mockup.png",
+        width: 1200,
+        height: 630,
+        alt: "Aprenda a Decorar em Dois Passos - E-book por Bárbara Marques",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Aprenda a Decorar em Dois Passos - Bárbara Marques",
     description:
       "Os primeiros passos para criar festas bonitas, sofisticadas e sem estresse",
+    images: ["/Images/ebook-mockup.png"],
   },
 };
 
