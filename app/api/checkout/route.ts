@@ -44,12 +44,7 @@ export async function POST(request: NextRequest) {
       cancel_url: cancelUrl,
       billing_address_collection: "auto",
       allow_promotion_codes: true,
-      payment_method_types: ["card", "pix"],
-      payment_method_options: {
-        pix: {
-          expires_after_seconds: 86400, // PIX expires after 1 day (86400 seconds) if not paid
-        },
-      },
+      payment_method_types: ["card"],
     });
 
     if (!session.url) {
