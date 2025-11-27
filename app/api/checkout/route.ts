@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
       payment_method_types: ["card", "pix"],
       payment_method_options: {
         pix: {
-          expires_after_days: 1, // PIX expires after 1 day if not paid
+          expires_after_seconds: 86400, // PIX expires after 1 day (86400 seconds) if not paid
         },
       },
     });
