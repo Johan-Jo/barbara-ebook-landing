@@ -16,9 +16,17 @@ export async function POST(request: NextRequest) {
     const cancelUrl = process.env.STRIPE_CANCEL_URL;
 
     if (!priceId || !successUrl || !cancelUrl) {
-      console.error("Missing required Stripe environment variables");
+      const missing = [];
+      if (!priceId) missing.push("STRIPE_PRICE_ID_EBOOK");
+      if (!successUrl) missing.push("STRIPE_SUCCESS_URL");
+      if (!cancelUrl) missing.push("STRIPE_CANCEL_URL");
+      
+      console.error("Missing required Stripe environment variables:", missing.join(", "));
       return NextResponse.json(
-        { error: "Configuração de pagamento incompleta" },
+        { 
+          error: "Configuração de pagamento incompleta",
+          missing: process.env.NODE_ENV === "development" ? missing : undefined
+        },
         { status: 500 }
       );
     }
