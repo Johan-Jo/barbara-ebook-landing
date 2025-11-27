@@ -36,6 +36,12 @@ export async function POST(request: NextRequest) {
       cancel_url: cancelUrl,
       billing_address_collection: "auto",
       allow_promotion_codes: true,
+      payment_method_types: ["card", "pix"],
+      payment_method_options: {
+        pix: {
+          expires_after_days: 1, // PIX expires after 1 day if not paid
+        },
+      },
     });
 
     if (!session.url) {
@@ -44,9 +50,21 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ url: session.url });
   } catch (error) {
-    console.error("Error creating checkout session:", error);
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    const errorStack = error instanceof Error ? error.stack : undefined;
+    
+    console.error("========== CHECKOUT ERROR ==========");
+    console.error("Error message:", errorMessage);
+    console.error("Error stack:", errorStack);
+    console.error("Full error object:", error);
+    console.error("====================================");
+    
     return NextResponse.json(
-      { error: "Erro ao processar pagamento. Tente novamente." },
+      { 
+        error: "Erro ao processar pagamento. Tente novamente.",
+        details: errorMessage,
+        stack: process.env.NODE_ENV === "development" ? errorStack : undefined
+      },
       { status: 500 }
     );
   }

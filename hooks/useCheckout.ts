@@ -18,11 +18,13 @@ export function useCheckout() {
         },
       });
 
-      if (!response.ok) {
-        throw new Error("Erro ao processar pagamento. Tente novamente.");
-      }
-
       const data = await response.json();
+
+      if (!response.ok) {
+        const errorMsg = data.error || data.details || "Erro ao processar pagamento. Tente novamente.";
+        console.error("Checkout API error:", data);
+        throw new Error(errorMsg);
+      }
 
       if (data.url) {
         window.location.href = data.url;
@@ -32,6 +34,7 @@ export function useCheckout() {
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : "Erro desconhecido";
+      console.error("Checkout error:", err);
       setError(errorMessage);
       setIsLoading(false);
     }
@@ -43,4 +46,6 @@ export function useCheckout() {
     error,
   };
 }
+
+
 

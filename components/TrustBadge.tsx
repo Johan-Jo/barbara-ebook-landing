@@ -12,3 +12,6 @@ export default function TrustBadge({ icon, text }: TrustBadgeProps) {
   );
 }
 
+
+
+
