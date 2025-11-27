@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import Button from "@/components/Button";
 import { getStripe } from "@/lib/stripe";
+import { readOrders } from "@/lib/orders";
 import type Stripe from "stripe";
 
 interface PageProps {
@@ -41,6 +42,11 @@ async function AccessContent({ sessionId }: { sessionId: string }) {
   try {
     const stripe = getStripe();
     session = await stripe.checkout.sessions.retrieve(sessionId);
+    console.log("Session retrieved:", {
+      id: session.id,
+      payment_status: session.payment_status,
+      status: session.status,
+    });
   } catch (err) {
     console.error("Error retrieving session:", err);
     error = "Erro ao verificar sessão de pagamento";
@@ -72,7 +78,17 @@ async function AccessContent({ sessionId }: { sessionId: string }) {
     );
   }
 
-  if (session.payment_status !== "paid") {
+  // Check if order exists in our system (webhook may have saved it)
+  const orders = await readOrders();
+  const orderExists = orders.some((order) => order.stripe_session_id === sessionId);
+  
+  // Check if payment is paid or if session is complete, or if order exists
+  const isPaid = 
+    session.payment_status === "paid" || 
+    session.status === "complete" ||
+    orderExists;
+  
+  if (!isPaid) {
     return (
       <div className="max-w-md w-full text-center">
         <div className="bg-white rounded-lg p-8 shadow-lg border border-border">
@@ -93,6 +109,9 @@ async function AccessContent({ sessionId }: { sessionId: string }) {
                   Voltar à página inicial
                 </Button>
               </Link>
+              <p className="text-sm text-primary-lighter">
+                Status: {session.payment_status} | Session: {session.status}
+              </p>
               <p className="text-sm text-primary-lighter">
                 Se o problema persistir, entre em contato conosco.
               </p>
@@ -126,8 +145,11 @@ async function AccessContent({ sessionId }: { sessionId: string }) {
             download
             className="block"
           >
-            <Button variant="primary" className="w-full text-lg py-5">
-              Baixar E-book (PDF)
+            <Button 
+              variant="primary" 
+              className="w-full text-lg py-6 bg-[#C9A96E] hover:bg-[#B8986A] text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+            >
+              📥 Baixar E-book (PDF)
             </Button>
           </a>
 

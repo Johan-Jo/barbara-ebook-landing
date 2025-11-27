@@ -27,7 +27,7 @@ async function ensureDataDirectory(): Promise<void> {
 /**
  * Reads all orders from the JSON file
  */
-async function readOrders(): Promise<Order[]> {
+export async function readOrders(): Promise<Order[]> {
   try {
     await ensureDataDirectory();
     const data = await fs.readFile(ORDERS_FILE, "utf-8");
